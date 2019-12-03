@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">SHERRY LICIA CS 125 APP</string>
+
+    <string name="lip_gloss">lip gloss</string>
+    <string name="lip_stain">lip stain</string>
     <string name="lipstick">lipstick</string>
-    <string name="ligloss">lipgloss</string>
-    <string name="lipstain">lipstain</string>
-    <string name="lipliquid">liquidlipstick</string>
+    <string name="liquid_lipstick">liquid lipstick</string>
+    <string name="sherry_and_licia">sherry and licia</string>
 </resources>
