@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,16 +14,49 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Button lipstick = findViewById(R.id.lipstick);
-//        lipstick.setOnClickListener(unused -> startActivity(new Intent(this, Lipstick.class)));
-//
-//        Button lipgloss = findViewById(R.id.lipgloss);
-//        lipgloss.setOnClickListener(unused -> startActivity(new Intent(this, Lipgloss.class)));
-//
-//        Button lipstain = findViewById(R.id.lipstain);
-//        lipstain.setOnClickListener(unused -> startActivity(new Intent(this, Lipstain.class)));
-//
-//        Button lipliquid = findViewById(R.id.lipliquid);
-//        lipliquid.setOnClickListener(unused -> startActivity(new Intent(this, Lipliquid.class)));
+        Button lipstick = findViewById(R.id.lipstick);
+        lipstick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start NewActivity.class
+                Intent myIntent = new Intent(MainActivity.this,
+                        Lipstick.class);
+                startActivity(myIntent);
+            }
+        });
+
+        Button lipgloss = findViewById(R.id.lipgloss);
+        lipgloss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start NewActivity.class
+                Intent myIntent = new Intent(MainActivity.this,
+                        Lipgloss.class);
+                startActivity(myIntent);
+            }
+        });
+
+        Button lipstain = findViewById(R.id.lipstain);
+        lipstain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start NewActivity.class
+                Intent myIntent = new Intent(MainActivity.this,
+                        Lipstain.class);
+                startActivity(myIntent);
+            }
+        });
+
+        Button lipliquid = findViewById(R.id.lipliquid);
+        lipliquid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start NewActivity.class
+                Intent myIntent = new Intent(MainActivity.this,
+                        Lipliquid.class);
+                startActivity(myIntent);
+            }
+        });
+
     }
 }
