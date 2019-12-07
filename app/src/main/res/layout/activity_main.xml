@@ -6,69 +6,164 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/title"
+<!--    <TextView-->
+<!--        android:id="@+id/title"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="LipPedia"-->
+<!--        android:textSize="30sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.099" />-->
+
+    <!--    <Button-->
+<!--        android:id="@+id/lipgloss"-->
+<!--        android:layout_width="177dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="1dp"-->
+<!--        android:layout_marginEnd="232dp"-->
+<!--        android:layout_marginRight="232dp"-->
+<!--        android:layout_marginBottom="249dp"-->
+<!--        android:text="@string/lip_gloss"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/lipstain" ></Button>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/lipstain"-->
+<!--        android:layout_width="177dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:text="@string/lip_stain"-->
+
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/lipstick" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/lipstick"-->
+<!--        android:layout_width="177dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:text="@string/lipstick"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/lipstain"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/lipliquid" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/lipliquid"-->
+<!--        android:layout_width="175dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="148dp"-->
+<!--        android:layout_marginEnd="236dp"-->
+<!--        android:layout_marginRight="236dp"-->
+<!--        android:text="@string/liquid_lipstick"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LipPedia"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="106dp"
+        android:layout_marginLeft="106dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginRight="106dp"
+        android:layout_marginBottom="22dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/title"
+        android:maxWidth="200dp"
+        android:maxHeight="200dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/lipstick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.099" />
+        app:srcCompat="@drawable/title" />
 
-    <Button
-        android:id="@+id/lipgloss"
-        android:layout_width="179dp"
+    <ImageButton
+        android:id="@+id/lipstick"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="232dp"
-        android:layout_marginRight="232dp"
-        android:layout_marginBottom="249dp"
-        android:text="@string/lip_gloss"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="33dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/lipstick"
+        android:maxWidth="200dp"
+        android:maxHeight="200dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/lipstain"
+        app:layout_constraintEnd_toStartOf="@+id/lipgloss"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/lipstickicon" />
+
+    <ImageButton
+        android:id="@+id/lipliquid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="384dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/lipliquid"
+        android:maxWidth="200dp"
+        android:maxHeight="200dp"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lipstain" ></Button>
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/lipliquidicon" />
 
-    <Button
+    <ImageButton
+        android:id="@+id/lipgloss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="156dp"
+        android:layout_marginBottom="33dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/lipgloss"
+        android:maxWidth="200dp"
+        android:maxHeight="200dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/lipliquid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/lipglossicon" />
+
+    <ImageButton
         android:id="@+id/lipstain"
-        android:layout_width="177dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/lip_stain"
-
+        android:layout_marginTop="384dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/lipstain"
+        android:maxWidth="200dp"
+        android:maxHeight="200dp"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.014"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lipstick" />
-
-    <Button
-        android:id="@+id/lipstick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/lipstick"
-        app:layout_constraintBottom_toTopOf="@+id/lipstain"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lipliquid" />
-
-    <Button
-        android:id="@+id/lipliquid"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:layout_marginEnd="236dp"
-        android:layout_marginRight="236dp"
-        android:text="@string/liquid_lipstick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/lipstainicon" />
 
     <TextView
         android:id="@+id/textView"
@@ -81,7 +176,6 @@
         android:text="@string/sherry_and_licia"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lipstick" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

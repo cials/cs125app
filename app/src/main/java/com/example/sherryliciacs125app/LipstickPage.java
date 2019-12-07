@@ -1,12 +1,9 @@
 package com.example.sherryliciacs125app;
 
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ActionMode;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,33 +12,28 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
+import com.google.gson.Gson;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.nio.charset.Charset;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import static androidx.core.content.ContextCompat.startActivity;
 
-public class Lipgloss extends AppCompatActivity {
+public class LipstickPage extends AppCompatActivity {
+
+    private String url;
+    private Gson gson;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lipgloss);
+        setContentView(R.layout.lipstick);
 
-        Button returnlipgloss = findViewById(R.id.returnlipgloss);
-        returnlipgloss.setOnClickListener(new View.OnClickListener() {
+        Button returnlipstick = findViewById(R.id.returnlipstick);
+        returnlipstick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start NewActivity.class
-                Intent myIntent = new Intent(Lipgloss.this,
+                Intent myIntent = new Intent(LipstickPage.this,
                         MainActivity.class);
                 startActivity(myIntent);
             }
@@ -59,7 +51,7 @@ public class Lipgloss extends AppCompatActivity {
     public void webRequest() {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://makeup-api.herokuapp.com/api/v1/products.json?product_category=lip_gloss&product_type=lipstick";
+        url = "http://makeup-api.herokuapp.com/api/v1/products.json?product_category=lipstick&product_type=lipstick";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -78,6 +70,16 @@ public class Lipgloss extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+
+    }
+
+    public JSONObject getJson() throws Exception{
+        return JsonReader.readJsonFromUrl(url);
+    }
+    public LipstickPage[] getLipstickArray() throws Exception {
+        gson.fromJson(getJson(), OneLipstick.class);
+        gson.from
+
     }
 
 
