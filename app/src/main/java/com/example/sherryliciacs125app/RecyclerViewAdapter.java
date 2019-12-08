@@ -20,16 +20,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
-    private ArrayList<String> allImageName;
-    private ArrayList<String> allImages;
+    private ArrayList<String> mProductName;
+    private ArrayList<String> mProductBrand;
+    private ArrayList<String> mPrice;
+    private ArrayList<String> mDescription;
+    private ArrayList<String> mLipPic;
     private Context context;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> allImageName, ArrayList<String> allImages) {
+    //constructor for 1 single recyclerview block
+    public RecyclerViewAdapter(ArrayList<String> mProductName, ArrayList<String> mProductBrand,
+                               ArrayList<String> mPrice, ArrayList<String> mDescription,
+                               ArrayList<String> mLipPic, Context context) {
+        this.mProductName = mProductName;
+        this.mProductBrand = mProductBrand;
+        this.mPrice = mPrice;
+        this.mDescription = mDescription;
+        this.mLipPic = mLipPic;
         this.context = context;
-        this.allImageName = allImageName;
-        this.allImages = allImages;
     }
 
+    //inflating layout_listitem and creating a viewholder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,37 +52,48 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
 
+        //glide is for images
         Glide.with(context)
                 .asBitmap()
-                .load(allImages.get(position))
-                .into(holder.image);
+                .load(mLipPic.get(position))
+                .into(holder.lipPic);
 
-        holder.imageName.setText(allImageName.get(position));
+        //setting text for the text views
+        holder.productName.setText(mProductName.get(position));
+        holder.productBrand.setText(mProductBrand.get(position));
+        holder.price.setText(mPrice.get(position));
+        holder.description.setText(mDescription.get(position));
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: clicked on: " + allImageName.get(position));
-                Toast.makeText(context, allImageName.get(position), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: clicked on: " + mProductName.get(position));
+                Toast.makeText(context, mProductName.get(position), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
+    //important: tells adapter how many list items we have. if we left it = 0, the screen would be blank
     @Override
     public int getItemCount() {
-        return allImageName.size();
+        return mProductName.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
-        TextView imageName;
+        ImageView lipPic;
+        TextView productName;
+        TextView productBrand;
+        TextView price;
+        TextView description;
         RelativeLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.image);
-            imageName = itemView.findViewById(R.id.productname);
+            lipPic = itemView.findViewById(R.id.lippic);
+            productName = itemView.findViewById(R.id.productname);
+            productBrand = itemView.findViewById(R.id.productbrand);
+            price = itemView.findViewById(R.id.price);
+            description = itemView.findViewById(R.id.description);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }

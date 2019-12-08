@@ -39,7 +39,10 @@ public class LipstickPage extends AppCompatActivity {
     private OneLipstick[] lipstickArray;
 
     //vars
-    private ArrayList<String> names = new ArrayList<>();
+    private ArrayList<String> productName = new ArrayList<>();
+    private ArrayList<String> productBrand = new ArrayList<>();
+    private ArrayList<String> price = new ArrayList<>();
+    private ArrayList<String> description = new ArrayList<>();
     private ArrayList<String> imageURL = new ArrayList<>();
 
     @Override
@@ -48,6 +51,7 @@ public class LipstickPage extends AppCompatActivity {
         setContentView(R.layout.lipstick);
         Log.d(TAG, "onCreate: Lipstick Started.");
 
+        //return button in every page to return to main page
         Button returnlipstick = findViewById(R.id.returnlipstick);
         returnlipstick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,20 +64,21 @@ public class LipstickPage extends AppCompatActivity {
         });
         webRequest();
         initImageBitmaps();
-//        try {
-//            getJson();
-//        } catch (Exception e) {
-//            Intent myIntent = new Intent(LipstickPage.this,
-//                    MainActivity.class);
-//            startActivity(myIntent);
-//        }
-//
+
+        try {
+            getJson();
+        } catch (Exception e) {
+            Intent myIntent = new Intent(LipstickPage.this,
+                    MainActivity.class);
+            startActivity(myIntent);
+        }
+
 //        individualValues();
 //
 //        TextView testResult = findViewById(R.id.testresult);
 //        testResult.setText(lipstickArray[0].getBrand());
-
     }
+    //oncreate end
 
     @Override
     protected void onStart() {
@@ -110,6 +115,7 @@ public class LipstickPage extends AppCompatActivity {
         JsonParser jsonParser = new JsonParser();
         JsonObject gsonObject = (JsonObject) jsonParser.parse(JsonReader.readJsonFromUrl(url).toString());
         alldata = gsonObject;
+        System.out.println(alldata);
         return alldata;
     }
 
@@ -142,19 +148,28 @@ public class LipstickPage extends AppCompatActivity {
     private void initImageBitmaps() {
         Log.d(TAG, "initImageBitmaps: preparing bitmaps.");
 
-        names.add("Blotted Lip");
+        productBrand.add("Brand: Colourpop");
+        productName.add("Product Name: Blotted Lip");
+        price.add("Price: USD 5.5");
+        description.add("Blotted Lip Sheer matte lipstick that creates the perfect popsicle pout! Formula is lightweight, matte and buildable for light to medium coverage.");
         imageURL.add("https://cdn.shopify.com/s/files/1/1338/0845/products/brain-freeze_a_800x1200.jpg?v=1502255076");
 
-        names.add("Lippie Stix");
+        productBrand.add("Brand: Colourpop");
+        productName.add("Product Name: Lippie Stix");
+        price.add("Price: USD 5.5");
+        description.add("Lippie Stix Formula contains Vitamin E, Mango, Avocado, and Shea butter for added comfort and moisture. None of our Lippie formulas contain any nasty ingredients like Parabens or Sulfates.");
         imageURL.add("https://cdn.shopify.com/s/files/1/1338/0845/collections/blottedlip-lippie-stix_grande.jpg?v=1512588803");
 
+        //calling initrecyclerview, where we call the recyclerview adapter here.
+        //later we call initimagebitmaps in oncreate
         initRecyclerView();
     }
 
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerview.");
         RecyclerView recyclerView = findViewById(R.id.recylerview);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, names, imageURL);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(productName, productBrand,
+                price, description, imageURL, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
