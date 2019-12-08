@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,6 +14,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import org.json.JSONObject;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LipstickPage extends AppCompatActivity {
 
     private String url;
-    private Gson gson;
+    private JsonObject alldata;
+    private OneLipstick[] lipstickArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +45,20 @@ public class LipstickPage extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
-
         webRequest();
+        try {
+            getJson();
+        } catch (Exception e) {
+            Intent myIntent = new Intent(LipstickPage.this,
+                    MainActivity.class);
+            startActivity(myIntent);
+        }
+
+        individualValues();
+
+        TextView testResult = findViewById(R.id.testresult);
+        testResult.setText(lipstickArray[0].getBrand());
+
     }
 
     @Override
@@ -73,15 +92,38 @@ public class LipstickPage extends AppCompatActivity {
 
     }
 
-    public JSONObject getJson() throws Exception{
-        return JsonReader.readJsonFromUrl(url);
-    }
-    public LipstickPage[] getLipstickArray() throws Exception {
-        gson.fromJson(getJson(), OneLipstick.class);
-        gson.from
-
+    public JsonObject getJson() throws Exception {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject gsonObject = (JsonObject) jsonParser.parse(JsonReader.readJsonFromUrl(url).toString());
+        alldata = gsonObject;
+        return alldata;
     }
 
+
+//1. create json object that contains all json content from url
+//2. use dot method to say like String name = jsonobjname.get("name").getAsString;
+// 3. put all this json individual values inside a function, and connect it to our layout
+// 4. inflate chunks
+
+    public void individualValues() {
+        JsonArray allLipsticks = alldata.getAsJsonArray();
+        lipstickArray = new OneLipstick[100];
+        int index = 0;
+        for (JsonElement lipElement : allLipsticks) {
+            JsonObject lipObject = lipElement.getAsJsonObject();
+
+            OneLipstick oneLipstick = new OneLipstick();
+            oneLipstick.setBrand(lipObject.get("brand").getAsString());
+            oneLipstick.setName(lipObject.get("name").getAsString());
+            oneLipstick.setPrice(lipObject.get("name").getAsDouble());
+            oneLipstick.setCurrency(lipObject.get("currency").getAsString());
+            oneLipstick.setPriceSign(lipObject.get("price_sign").getAsString());
+            oneLipstick.setDescription(lipObject.get("description").getAsString());
+            oneLipstick.setImagelink(lipObject.get("image_link").getAsString());
+
+            lipstickArray[index] = oneLipstick;
+        }
+    }
 
 
 
