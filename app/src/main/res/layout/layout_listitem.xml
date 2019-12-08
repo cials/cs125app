@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:padding="15dp" android:id="@+id/parent_layout">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/image"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Brand"
+        android:id="@+id/productbrand"
+
+        android:layout_toRightOf="@+id/image"
+        android:layout_centerVertical="true"
+        android:textColor="#000"
+        android:textSize="17sp"
+        android:layout_marginLeft="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Name"
+        android:id="@+id/productname"
+
+        android:layout_toRightOf="@+id/image"
+        android:textColor="#000"
+        android:textSize="17sp"
+        android:layout_marginLeft="30dp"/>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+
+        android:layout_toRightOf="@+id/image"
+        android:layout_below="@id/productbrand"
+        android:text="Price"
+        android:textColor="#000"
+        android:textSize="17sp" />
+
+
+</RelativeLayout>
