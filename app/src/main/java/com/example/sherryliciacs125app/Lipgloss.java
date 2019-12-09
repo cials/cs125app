@@ -1,41 +1,69 @@
 package com.example.sherryliciacs125app;
 
-import android.app.DownloadManager;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ActionMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
+
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class Lipgloss extends AppCompatActivity {
+
+    private static final String TAG = "Lipgloss";
+    private RecyclerView recyclerView;
+
+    private String url;
+
+    private List<OneLipstick> lipstickList;
+    private RecyclerView.Adapter adapter;
+
+    private DividerItemDecoration dividerItemDecoration;
+    private LinearLayoutManager linearLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lipgloss);
+        Log.d(TAG, "onCreate: Lipgloss Started.");
 
+        //setting up recycler view and connecting it with our lipstick adapter.
+        recyclerView = findViewById(R.id.recyclerview);
+
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
+
+        // creating lipsticklist, a list of Lipstick objects which we will add to recycler view.
+        //each lipstick object has product name, brand, price, description.
+        lipstickList = new ArrayList<>();
+        adapter = new LipstickAdapter(getApplicationContext(), lipstickList);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
+        //return button in every page to return to main page
         Button returnlipgloss = findViewById(R.id.returnlipgloss);
         returnlipgloss.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,41 +75,76 @@ public class Lipgloss extends AppCompatActivity {
             }
         });
 
-        webRequest();
+        //calling get json data function
+        getData();
+
     }
+    //oncreate end
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        webRequest();
-    }
+    //getData function fetches json data from makeupAPI from the internet using Volley,
+    //and puts that data inside elements in our recyclerview block.
+    private void getData() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");        // helpful. tells user data is loading & not crashing.
+        progressDialog.show();
 
-    public void webRequest() {
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://makeup-api.herokuapp.com/api/v1/products.json?product_category=lip_gloss&product_type=lipstick";
+        //this is what's different in every lipstick category class: the JSON URL for that specific lipstick category.
+        url = "http://makeup-api.herokuapp.com/api/v1/products.json?product_category=lip_gloss&product_type=lipstick";
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
+        //we can call a JsonArrayRequest / JsonObjectRequest.
+        //since our Json starts with [] not {} in the url, means it's an array.
+        //the "response" is a JsonArray.
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        System.out.println(response);
+                    public void onResponse(JSONArray response) {
+                        //response is a jsonArray
+                        //we use a for loop to get jsonObjects with index i from the array.
+                        //then, we initialize those jsonObjects to our recyclerview elements.
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject jsonObject = response.getJSONObject(i);
+
+                                //creating OneLipstick object
+                                //putting json values to that OneLipstick object
+                                OneLipstick oneLipstick = new OneLipstick();
+                                oneLipstick.setBrand("Brand: " + jsonObject.getString("brand"));
+                                oneLipstick.setName("Name: " + jsonObject.getString("name"));
+                                oneLipstick.setPrice("Price: USD " + jsonObject.getString("price"));
+                                oneLipstick.setDescription(jsonObject.getString("description"));
+                                oneLipstick.setImageURL(jsonObject.getString("image_link"));
+
+                                //once 1 lipstick object (which is 1 recyclerview block) has been created,
+                                //we add it to our lipstick list. lipstick list contains lipstick objects.
+                                //every lipstick objects has product brand, name, price, description.
+                                lipstickList.add(oneLipstick);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace(); // printing error
+                                progressDialog.dismiss();
+                            }
+                        }
+                        adapter.notifyDataSetChanged();
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("That didn't work!");
+                Log.e("Volley", error.toString());
+                progressDialog.dismiss();
             }
         });
 
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+        //after fetching all that json, want to make a request queue using volley
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(jsonArrayRequest);
     }
 
 
-
-
+//1. create json object that contains all json content from url
+//2. use dot method to say like String name = jsonobjname.get("name").getAsString;
+// 3. put all this json individual values inside a function, and connect it to our layout
+// 4. inflate chunks
 
 }
+

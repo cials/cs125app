@@ -3,59 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent" android:padding="15dp"
-    tools:context=".LipstickPage">
-
-<!--    <TextView-->
-<!--        android:id="@+id/productbrand"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textColor="@android:color/black"-->
-<!--        android:text="@string/product_name" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/productname"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textColor="@android:color/black"-->
-<!--        android:layout_below="@id/productbrand"-->
-<!--        android:text="@string/product_name" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/price"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textColor="@android:color/black"-->
-<!--        android:layout_below="@id/productname"-->
-<!--        android:text="@string/price" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/description"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textColor="@android:color/black"-->
-<!--        android:layout_below="@id/price"-->
-<!--        android:text="@string/description" />-->
+    android:background="@drawable/menumarble"
+    tools:context=".Lipstick">
 
     <Button
         android:id="@+id/returnlipstick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="return" />
-
-<!--    <android.support.v7.widget.RecyclerView-->
-<!--        android:id="@+id/recylerview"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:padding="10dp"-->
-<!--        android:layout_marginTop="15dp"/>-->
+        android:text="@string/returnbutton" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylerview"
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="horizontal">

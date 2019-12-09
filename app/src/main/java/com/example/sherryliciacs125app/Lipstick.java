@@ -28,7 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class Lipstain extends AppCompatActivity {
+public class Lipstick extends AppCompatActivity {
 
     private static final String TAG = "Lipstick";
     private RecyclerView recyclerView;
@@ -44,8 +44,8 @@ public class Lipstain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lipstain);
-        Log.d(TAG, "onCreate: Lipstain Started.");
+        setContentView(R.layout.lipstick);
+        Log.d(TAG, "onCreate: Lipstick Started.");
 
         //setting up recycler view and connecting it with our lipstick adapter.
         recyclerView = findViewById(R.id.recyclerview);
@@ -64,12 +64,12 @@ public class Lipstain extends AppCompatActivity {
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         //return button in every page to return to main page
-        Button returnlipstain = findViewById(R.id.returnlipstain);
-        returnlipstain.setOnClickListener(new View.OnClickListener() {
+        Button returnlipstick = findViewById(R.id.returnlipstick);
+        returnlipstick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start NewActivity.class
-                Intent myIntent = new Intent(Lipstain.this,
+                Intent myIntent = new Intent(Lipstick.this,
                         MainActivity.class);
                 startActivity(myIntent);
             }
@@ -89,11 +89,8 @@ public class Lipstain extends AppCompatActivity {
         progressDialog.show();
 
         //this is what's different in every lipstick category class: the JSON URL for that specific lipstick category.
-        url = "http://makeup-api.herokuapp.com/api/v1/products.json?product_category=lip_stain&product_type=lipstick";
+        url = "http://makeup-api.herokuapp.com/api/v1/products.json?product_category=lipstick&product_type=lipstick";
 
-        //we can call a JsonArrayRequest / JsonObjectRequest.
-        //since our Json starts with [] not {} in the url, means it's an array.
-        //the "response" is a JsonArray.
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override

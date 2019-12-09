@@ -6,10 +6,12 @@
     <string name="lipstain">lip stain</string>
     <string name="lipstick">lipstick</string>
     <string name="lipliquid">liquid lipstick</string>
-    <string name="sherry_and_licia">sherry and licia</string>
     <string name="product_brand">Product Brand</string>
     <string name="product_name">Product Name</string>
     <string name="description">Description</string>
     <string name="price">Price</string>
     <string name="lip_pic">lip pic</string>
+    <string name="returnbutton">return</string>
+    <string name="names">names</string>
+    <string name="encyclopedia">encyclopedia</string>
 </resources>

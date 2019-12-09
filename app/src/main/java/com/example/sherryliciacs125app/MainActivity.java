@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,18 +17,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        //lipstick button
         ImageButton lipstick = findViewById(R.id.lipstick);
         lipstick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start NewActivity.class
                 Intent myIntent = new Intent(MainActivity.this,
-                        LipstickPage.class);
+                        Lipstick.class);
                 startActivity(myIntent);
             }
         });
 
+        //lipgloss button
         ImageButton lipgloss = findViewById(R.id.lipgloss);
         lipgloss.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //lipstain button
         ImageButton lipstain = findViewById(R.id.lipstain);
         lipstain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //lipliquid button
         ImageButton lipliquid = findViewById(R.id.lipliquid);
         lipliquid.setOnClickListener(new View.OnClickListener() {
             @Override

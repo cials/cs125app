@@ -8,10 +8,12 @@ public class OneLipstick {
     private String description;
     private String imageURL;
 
+    //empty constructor. called in lipstick adapter
     public OneLipstick() {
 
     }
 
+    //full constructor (5 arguments)
     public OneLipstick(String brand, String name, String price, String description, String imageURL) {
         this.brand = brand;
         this.name = name;
@@ -61,11 +63,10 @@ public class OneLipstick {
     }
 
 
-
     //1. create json object that contains all json content from url
 //2. use dot method to say like String name = jsonobjname.get("name").getAsString;
 // 3. put all this json individual values inside a function, and connect it to our layout
-// 4. inflate chunks * make recycler
+// 4. inflate chunks & make recyclerview
 
 }
 

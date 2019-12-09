@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" android:padding="15dp"
+    android:background="@drawable/menumarble"
+    tools:context=".Lipstain">
 
     <Button
         android:id="@+id/returnlipstain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="return" />
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:text="@string/returnbutton" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal">
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>
