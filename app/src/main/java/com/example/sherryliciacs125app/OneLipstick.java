@@ -4,11 +4,21 @@ package com.example.sherryliciacs125app;
 public class OneLipstick {
     private String brand;
     private String name;
-    private double price;
-    private String priceSign;
-    private String currency;
-    private String imagelink;
+    private String price;
     private String description;
+    private String imageURL;
+
+    public OneLipstick() {
+
+    }
+
+    public OneLipstick(String brand, String name, String price, String description, String imageURL) {
+        this.brand = brand;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.imageURL = imageURL;
+    }
 
     public String getBrand() {
         return brand;
@@ -26,36 +36,12 @@ public class OneLipstick {
         this.name = name;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
-    }
-
-    public String getPriceSign() {
-        return priceSign;
-    }
-
-    public void setPriceSign(String priceSign) {
-        this.priceSign = priceSign;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public String getImagelink() {
-        return imagelink;
-    }
-
-    public void setImagelink(String imagelink) {
-        this.imagelink = imagelink;
     }
 
     public String getDescription() {
@@ -65,6 +51,15 @@ public class OneLipstick {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
 
 
     //1. create json object that contains all json content from url
